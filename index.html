@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BIS5203 Week 8 - HTML5 Media & SVG</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background: linear-gradient(135deg, #87ceeb, #ffe4b5);
+        text-align: center;
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 30px;
+      }
+
+      .media-section {
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .media-section h2 {
+        color: #34495e;
+        margin-bottom: 15px;
+      }
+
+      audio,
+      video {
+        width: 100%;
+        max-width: 600px;
+        border-radius: 5px;
+      }
+
+      .svg-container {
+        margin: 20px 0;
+      }
+
+      .sun-animation {
+        animation: rotate 10s linear infinite;
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .media-info {
+        font-size: 14px;
+        color: #7f8c8d;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>HTML5 Media & SVG Demonstration</h1>
+    <p>
+      This webpage demonstrates HTML5 audio, video, and inline SVG graphics.
+    </p>
+
+    <!-- HTML5 Audio Section -->
+    <div class="media-section">
+      <h2>🎵 HTML5 Audio</h2>
+      <audio controls autoplay loop>
+        <source src="media/audio.mp3" type="audio/mpeg" />
+        <source src="media/audio.wav" type="audio/wav" />
+        <source src="media/audio.ogg" type="audio/ogg" />
+        Your browser does not support the audio element.
+      </audio>
+      <div class="media-info">Audio will autoplay and loop continuously</div>
+    </div>
+
+    <!-- HTML5 Video Section -->
+    <div class="media-section">
+      <h2>🎬 HTML5 Video</h2>
+      <video controls autoplay loop muted>
+        <source src="media/video.mp4" type="video/mp4" />
+        <source src="media/video.webm" type="video/webm" />
+        Your browser does not support the video element.
+      </video>
+      <div class="media-info">
+        Video will autoplay, loop, and is muted for better user experience
+      </div>
+    </div>
+
+    <!-- Inline SVG Section -->
+    <div class="media-section">
+      <h2>☀️ Inline SVG Sun Graphic</h2>
+      <div class="svg-container">
+        <svg
+          width="200"
+          height="200"
+          xmlns="http://www.w3.org/2000/svg"
+          class="sun-animation"
+        >
+          <!-- Sun rays (outer) -->
+          <g stroke="#FFA500" stroke-width="3" stroke-linecap="round">
+            <!-- Long rays -->
+            <line x1="100" y1="10" x2="100" y2="30" />
+            <line x1="100" y1="170" x2="100" y2="190" />
+            <line x1="10" y1="100" x2="30" y2="100" />
+            <line x1="170" y1="100" x2="190" y2="100" />
+
+            <!-- Diagonal long rays -->
+            <line x1="29.29" y1="29.29" x2="43.43" y2="43.43" />
+            <line x1="170.71" y1="29.29" x2="156.57" y2="43.43" />
+            <line x1="29.29" y1="170.71" x2="43.43" y2="156.57" />
+            <line x1="170.71" y1="170.71" x2="156.57" y2="156.57" />
+
+            <!-- Short rays -->
+            <line x1="100" y1="25" x2="100" y2="35" />
+            <line x1="100" y1="165" x2="100" y2="175" />
+            <line x1="25" y1="100" x2="35" y2="100" />
+            <line x1="165" y1="100" x2="175" y2="100" />
+          </g>
+
+          <!-- Sun body -->
+          <circle
+            cx="100"
+            cy="100"
+            r="40"
+            fill="#FFD700"
+            stroke="#FFA500"
+            stroke-width="2"
+          />
+
+          <!-- Sun face -->
+          <!-- Eyes -->
+          <circle cx="85" cy="85" r="4" fill="#FF8C00" />
+          <circle cx="115" cy="85" r="4" fill="#FF8C00" />
+
+          <!-- Mouth -->
+          <path
+            d="M 80 110 Q 100 125 120 110"
+            stroke="#FF8C00"
+            stroke-width="3"
+            fill="none"
+            stroke-linecap="round"
+          />
+
+          <!-- Cheeks -->
+          <circle cx="70" cy="105" r="6" fill="#FF6347" opacity="0.6" />
+          <circle cx="130" cy="105" r="6" fill="#FF6347" opacity="0.6" />
+        </svg>
+      </div>
+      <div class="media-info">Animated SVG sun with rotating rays</div>
+    </div>
+
+    <!-- Footer -->
+    <div class="media-section">
+      <h2>📋 Project Information</h2>
+      <p><strong>Course:</strong> BIS5203 - Week 8 Assignment</p>
+      <p>
+        <strong>Features:</strong> HTML5 Audio (autoplay, loop) | HTML5 Video
+        (autoplay, loop, muted) | Inline SVG Animation
+      </p>
+      <p><strong>Deployment:</strong> GitHub Pages</p>
+    </div>
+
+    <script>
+      // Handle autoplay policies for different browsers
+      document.addEventListener("DOMContentLoaded", function () {
+        const audio = document.querySelector("audio");
+        const video = document.querySelector("video");
+
+        // Attempt to play audio (might be blocked by browser policy)
+        if (audio) {
+          audio.play().catch(function (error) {
+            console.log("Audio autoplay was prevented:", error);
+          });
+        }
+
+        // Video should autoplay since it's muted
+        if (video) {
+          video.play().catch(function (error) {
+            console.log("Video autoplay was prevented:", error);
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
